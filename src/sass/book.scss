@@ -1,0 +1,151 @@
+$black: #000;
+$white: #fff;
+
+body{
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  justify-content: center;
+  background-color: #4a1010;
+}
+input{
+  display: none;
+}
+img, .flip, .front, .back{
+  width: 100%;
+  height: 100%;
+}
+.book, body{
+  display: flex;
+}
+.book{
+  margin-top: 3rem;
+}
+.cover, .flip-book{
+  width: 20rem;
+  height: 30rem;
+}
+.flip-book{
+  position: relative;
+  perspective: 1500px;
+}
+.flip, .front, .back{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.flip{
+  transform-origin: left;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  transition: .6s;
+  color: $black;
+}
+p{
+  font-size: 0.95rem;
+  line-height: 2rem;
+}
+#fig--pages{
+  position: relative;
+}
+.fig{
+  &01, 
+  &02,
+  &03,
+  &04,
+  &05{
+    position: absolute;
+    background-color: rgba($white, .75);
+    height: 8rem;
+    width: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid rgba($color: #535353, $alpha: .5);
+  }
+  &01, &02{
+    top: 5%;
+  }
+  &02, &04{
+    left: 60%;
+  }
+  &03, &04{
+    bottom: 12%;
+  }
+  &05{
+    top: 33%;
+    left: 32%;
+  }
+  
+}
+.front, .back{
+  background-color: #fbf9e5;
+  box-shadow: inset 0 0 2rem #888888;
+  box-sizing: border-box;
+}
+.front{
+  padding: 0 0.9rem;
+}
+.back{
+  z-index: 99;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+.next-btn, .back-btn{
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #ff0000;
+}
+#p{
+  &6{
+    z-index: 1;
+  }
+  &5{
+    z-index: 2;
+  }
+  &4{
+    z-index: 3;
+  }
+  &3{
+    z-index: 4;
+  }
+  &2{
+    z-index: 5;
+  }
+  &1{
+    z-index: 6;
+  }
+}
+#c1:checked ~ .flip-book #p1, 
+#c2:checked ~ .flip-book #p2, 
+#c3:checked ~ .flip-book #p3,
+#c4:checked ~ .flip-book #p4, 
+#c5:checked ~ .flip-book #p5,
+#c6:checked ~ .flip-book #p6{
+  transform: rotateY(-180deg);
+}
+#c{
+  &1:checked ~ .flip-book #p1{
+    z-index: 1;
+  }
+  &2:checked ~ .flip-book #p2{
+    z-index: 2;
+  }
+  &3:checked ~ .flip-book #p3{
+    z-index: 3;
+  }
+  &4:checked ~ .flip-book #p4{
+    z-index: 4;
+  }
+  &5:checked ~ .flip-book #p5{
+    z-index: 5;
+  }
+  &6:checked ~ .flip-book #p6{
+    z-index: 6;
+  }
+}
